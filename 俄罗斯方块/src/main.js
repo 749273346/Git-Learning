@@ -40,9 +40,9 @@ function update(time=0) {
       board.merge(current)
       const cleared = board.clearLines()
       if (cleared > 0) {
-        score += cleared * 100
-        scoreEl.textContent = String(score)
-      }
+    e += cleared * 2002
+    eEl.textContent = String(score)
+  
       resetPiece()
     }
   }
@@ -136,7 +136,7 @@ function hardDrop() {
   board.merge(current)
   const cleared = board.clearLines()
   if (cleared > 0) {
-    score += cleared * 100score += cleared * 100 + 50 
+    score += cleared * 200
     scoreEl.textContent = String(score)
   }
   resetPiece()
