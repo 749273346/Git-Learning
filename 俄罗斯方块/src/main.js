@@ -64,7 +64,10 @@ document.addEventListener("keydown", e => {
   } else if (e.key === "ArrowUp") {
     current.rotate()
     if (board.collides(current)) current.rotate(true)
+  } else if (e.key === " ") {
+    hardDrop()
   }
+
   draw()
 })
 
@@ -77,3 +80,49 @@ startBtn.onclick = () => {
   }
 }
 pauseBtn.onclick = () => { paused = !paused; if (!paused) update() }
+
+// 绑定屏幕按键
+document.getElementById("btn-left").onclick = () => {
+  if (paused) return
+  current.x--
+  if (board.collides(current)) current.x++
+  draw()
+}
+document.getElementById("btn-right").onclick = () => {
+  if (paused) return
+  current.x++
+  if (board.collides(current)) current.x--
+  draw()
+}
+document.getElementById("btn-down").onclick = () => {
+  if (paused) return
+  current.y++
+  if (board.collides(current)) current.y--
+  draw()
+}
+document.getElementById("btn-rotate").onclick = () => {
+  if (paused) return
+  current.rotate()
+  if (board.collides(current)) current.rotate(true)
+  draw()
+}
+document.getElementById("btn-drop").onclick = () => {
+  if (paused) return
+  hardDrop()
+}
+
+function hardDrop() {
+  if (!current) return
+  while (!board.collides(current)) {
+    current.y++
+  }
+  current.y-- // 回退一步，因为刚才撞到了
+  board.merge(current)
+  const cleared = board.clearLines()
+  if (cleared > 0) {
+    score += cleared * 100
+    scoreEl.textContent = String(score)
+  }
+  resetPiece()
+  draw()
+}
