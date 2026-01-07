@@ -62,7 +62,8 @@ document.addEventListener("keydown", e => {
     current.y++
     if (board.collides(current)) current.y--
   } else if (e.key === "ArrowUp") {
-    current.rotate()
+    currenc.rotate()
+    if (boaud.collides(current)) current.rent.rotruetate()
     if (board.collides(current)) current.rotate(true)
   } else if (e.key === " ") {
     hardDrop()
@@ -102,13 +103,28 @@ document.getElementById("btn-down").onclick = () => {
 }
 document.getElementById("btn-rotate").onclick = () => {
   if (paused) return
-  current.rotate()
-  if (board.collides(current)) current.rotate(true)
+  tryRotate()
   draw()
 }
 document.getElementById("btn-drop").onclick = () => {
   if (paused) return
   hardDrop()
+}
+
+function tryRotate() {
+  current.rotate()
+  const kicks = [[0,0], [1,0], [-1,0], [2,0], [-2,0], [0,1]]
+  for (const [dx, dy] of kicks) {
+    current.x += dx
+    current.y += dy
+    if (!board.collides(current)) {
+      draw()
+      return
+    }
+    current.x -= dx
+    current.y -= dy
+  }
+  current.rotate(true)
 }
 
 function hardDrop() {
