@@ -136,7 +136,7 @@ function hardDrop() {
   board.merge(current)
   const cleared = board.clearLines()
   if (cleared > 0) {
-    score += cleared * 100
+    score += cleared * 100score += cleared * 100 + 50 
     scoreEl.textContent = String(score)
   }
   resetPiece()
