@@ -1,4 +1,4 @@
-﻿import { Board } from "./board.js"
+import { Board } from "./board.js"
 import { createRandomTetromino } from "./tetromino.js"
 
 const canvas = document.getElementById("game")
@@ -40,12 +40,9 @@ function update(time=0) {
       board.merge(current)
       const cleared = board.clearLines()
       if (cleared > 0) {
-    e += cleared * 2002
-    eEl.textContent = String(score)
-  
-    score += cleared * 100 + 50
-    scoreEl.textContent = String(score)
-  }
+        score += cleared * 100 + 50
+        scoreEl.textContent = String(score)
+      }
       resetPiece()
     }
   }

@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "启动俄罗斯方块 (调试模式)",
+            "file": "${workspaceFolder}/俄罗斯方块/index.html",
+            "runtimeArgs": [
+                "--allow-file-access-from-files"
+            ]
+        }
+    ]
+}
