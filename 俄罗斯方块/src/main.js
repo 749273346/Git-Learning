@@ -40,15 +40,9 @@ function update(time=0) {
       board.merge(current)
       const cleared = board.clearLines()
       if (cleared > 0) {
-<<<<<<< HEAD
-    score += cleared * 100 + 50
-    scoreEl.textContent = String(score)
-  }
-=======
-    e += cleared * 2002
-    eEl.textContent = String(score)
-  
->>>>>>> feature/score-tweak
+        score += cleared * 100
+        scoreEl.textContent = String(score)
+      }
       resetPiece()
     }
   }
@@ -68,9 +62,7 @@ document.addEventListener("keydown", e => {
     current.y++
     if (board.collides(current)) current.y--
   } else if (e.key === "ArrowUp") {
-    currenc.rotate()
-    if (boaud.collides(current)) current.rent.rotruetate()
-    if (board.collides(current)) current.rotate(true)
+    tryRotate()
   } else if (e.key === " ") {
     hardDrop()
   }
@@ -142,11 +134,7 @@ function hardDrop() {
   board.merge(current)
   const cleared = board.clearLines()
   if (cleared > 0) {
-<<<<<<< HEAD
-    score += cleared * 200 // 这个分支觉得应该翻倍
-=======
     score += cleared * 200
->>>>>>> feature/score-tweak
     scoreEl.textContent = String(score)
   }
   resetPiece()
